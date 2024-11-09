@@ -31,6 +31,22 @@ console.log(sortedList); // 1, 3, 4, 8
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 sortedList.push(a);
 const b = sortedList.pop();
 expect(a).toBe(b) // fail

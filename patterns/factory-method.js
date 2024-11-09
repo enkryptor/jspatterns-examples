@@ -1,4 +1,6 @@
 class Article {
-	createFromText(text) {}
-	createFromArticle(article) {}
+	static createFromText(text) {}
+	static createFromArticle(article) {}
 }
+
+Article.createFromText("")

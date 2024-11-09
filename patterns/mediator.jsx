@@ -13,9 +13,9 @@ export default function App() {
                     checked={checked}
                     onChange={() => {
                         if (checked) {
-                            setText('')
+                            setText('');
                         }
-                        setChecked(!checked)
+                        setChecked(!checked);
                     }
                     }
                 />

@@ -18,7 +18,7 @@ class BaseService {
 }
 
 
-class Service {
+class Service extends BaseService {
     constructor({ http }) {
         this.http = http;
     }
