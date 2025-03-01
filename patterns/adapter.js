@@ -55,9 +55,10 @@ function loadScript(src, callback) {
 }
 
 // использование:
-loadScript('path/script.js', (err, script) => {...})
+loadScript('path/script.js', (err, script) => { /* ... */ })
 
-// превращаем в промис
+
+// превращаем функцию с коллбэком в промис
 
 function promisify(f) {
     return function (...args) { // возвращает функцию-обёртку

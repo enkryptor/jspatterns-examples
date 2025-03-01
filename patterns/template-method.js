@@ -2,11 +2,11 @@
 
 class BaseService {
     async sendSomething(data) {
-        const body = this.prepare(data);
+        const body = this.encode(data);
         await this.send(body);
     }
 
-    prepare(data) {
+    encode(data) {
         // реализация по умолчанию
         return data;
     }
@@ -23,7 +23,7 @@ class Service extends BaseService {
         this.http = http;
     }
 
-    prepare(data) {
+    encode(data) {
         return Converters.base64ToUnicode(data);
     }
 
@@ -34,7 +34,7 @@ class Service extends BaseService {
 
 
 
-// где уместно, можно распределить ответственность по наследникам
+// распределение ответственности по наследникам
 
 class HttpService extends BaseService {
     // Пример с приватным полем
@@ -49,8 +49,30 @@ class HttpService extends BaseService {
     }
 }
 
-class PreparedDataService extends HttpService {
-    prepare(text) {
+class EncodedDataService extends HttpService {
+    encode(text) {
         // ....
     }
 }
+
+
+
+
+
+// Особенность JS при использовании конструктора в качестве шаблонного метода:
+
+class Animal {
+    constructor() {
+        this.announce();
+    }
+}
+class Dog extends Animal {
+    constructor(name) {
+        super();
+        this.name = name;
+    }
+    announce() {
+        console.log(`A dog named ${this.name} was born!`);
+    }
+}
+const t = new Dog('Fido'); // выведет "A dog named undefined was born!"
