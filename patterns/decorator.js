@@ -1,4 +1,35 @@
-// Пример — логирующий декоратор:
+// Классический пример – декоратор класса
+
+class Player {
+    play() { }
+    pause() { }
+}
+
+class TvPlayer {
+    constructor(player) {
+        this.player = player;
+    }
+
+    switchChannel() { }
+
+    play() {
+        const startTime = performance.now();
+        this.player.play();
+        const endTime = performance.now();
+        console.log(`Выполнение заняло ${endTime - startTime} мс`);
+    }
+
+    pause() {
+        this.player.pause();
+    }
+}
+
+const player = new Player();
+const tvPlayer = new TvPlayer(player);
+
+
+
+// Логирующий декоратор для функции:
 
 const measure = (f) => {
     return (...args) => {
@@ -46,34 +77,3 @@ const measure2 = (name) => (f) => {
 }
 
 isPrime = measure2("isPrime")(isPrime);
-
-
-
-// классический пример – декоратор класса
-
-class Player {
-    play() { }
-    pause() { }
-}
-
-class TvPlayer {
-    constructor(player) {
-        this.player = player;
-    }
-
-    switchChannel() { }
-
-    play() {
-        const startTime = performance.now();
-        this.player.play();
-        const endTime = performance.now();
-        console.log(`Выполнение заняло ${endTime - startTime} мс`);
-    }
-
-    pause() {
-        this.player.pause();
-    }
-}
-
-const player = new Player();
-const tvPlayer = new TvPlayer(player);
